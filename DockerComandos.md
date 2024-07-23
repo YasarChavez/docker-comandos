@@ -229,3 +229,20 @@ docker unpause contenedor_id
 ```bash
 docker checkpoint create contenedor_id checkpoint_name
 ```
+### Configurar un contenedor Docker para que se inicie automáticamente
+Always: El contenedor se reiniciará siempre, independientemente del estado de salida.  
+```bash
+docker run --name mi_contenedor --restart always -d mi_imagen:latest
+```  
+On-failure: El contenedor se reiniciará solo si sale con un código de error. Puedes especificar el número máximo de intentos de reinicio.  
+```bash
+docker run --name mi_contenedor --restart on-failure:5 -d mi_imagen:latest
+```  
+Unless-stopped: El contenedor se reiniciará a menos que sea detenido manualmente.  
+```bash
+docker run --name mi_contenedor --restart unless-stopped -d mi_imagen:latest
+```  
+Never: El contenedor no se reiniciará.  
+```bash
+docker run --name mi_contenedor --restart never -d mi_imagen:latest
+```
